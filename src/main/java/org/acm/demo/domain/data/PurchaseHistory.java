@@ -27,7 +27,7 @@ public class  PurchaseHistory {
         this.cart = cart;
         return this;
     }
-    
+
     public Long getTotalPrice() {
         return totalPrice;
     }

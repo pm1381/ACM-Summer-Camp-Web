@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class ProductRepositoryImpl implements ProductRepository {
     private final List<Product> products = new ArrayList<>();
     private ProductRepository productRepository;
+    private static int productLastID = 1;
 
     private ProductRepositoryImpl() {
 
@@ -29,6 +30,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void saveProduct(Product product) {
+        product.setId(productLastID++);
         products.add(product);
     }
 
@@ -44,6 +46,21 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public List<Product> getProducts(){
+        return products;
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        for(Product product : products){
+            if(id == product.getId()){
+                return product;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public List<Product> getProductsByCategory(String category) {
         return products.stream().filter(product -> product.getCategory().equals(category)).collect(Collectors.toList());
     }
@@ -56,11 +73,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public List<Product> filterProducts(String name, String category, Long minPrice,
                                         Long maxPrice, String company, Integer rating) {
-        return products.stream().filter(product -> product.getName().equals(name) &&
-                product.getCategory().equals(category) &&
-                product.getPrice() >= minPrice &&
-                product.getPrice() <= maxPrice &&
-                product.getCompany().equals(company) &&
+        return products.stream().filter(product -> product.getName().contains(name) ||
+                product.getCategory().equals(category) ||
+                product.getPrice() >= minPrice ||
+                product.getPrice() <= maxPrice ||
+                product.getCompany().equals(company) ||
                 product.getRating().equals(rating)
         ).collect(Collectors.toList());
     }

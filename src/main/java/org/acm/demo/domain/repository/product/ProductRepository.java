@@ -12,6 +12,8 @@ public interface ProductRepository {
     void saveProduct(Product product);
     void deleteProduct(Product product);
     void updateProduct(Product product);
+    List<Product> getProducts();
+    Product getProductById(int id);
     List<Product> getProductsByCategory(String category);
     List<Product> getProductsByCompany(String company);
     List<Product> filterProducts(String name, String category, Long minPrice,
