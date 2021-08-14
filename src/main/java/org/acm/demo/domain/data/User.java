@@ -1,9 +1,12 @@
 package org.acm.demo.domain.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author : Bahar Zolfaghari
  **/
 public class User {
+    @JsonIgnore
     private Integer id;
     private String name;
     private String family;
@@ -12,8 +15,7 @@ public class User {
     private String password;
     private Role role;
 
-    public User(Integer id, String name, String family, String phone, String email, String password) {
-        this.id = id;
+    public User(String name, String family, String phone, String email, String password) {
         this.name = name;
         this.family = family;
         this.phone = phone;
@@ -25,62 +27,55 @@ public class User {
         return id;
     }
 
-    public User setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
-        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public User setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public String getFamily() {
         return family;
     }
 
-    public User setFamily(String family) {
+    public void setFamily(String family) {
         this.family = family;
-        return this;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public User setPhone(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
-        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public User setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public User setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
-        return this;
     }
 
     public Role getRole() {
         return role;
     }
 
-    public User setRole(Role role) {
+    public void setRole(Role role) {
         this.role = role;
-        return this;
     }
 }

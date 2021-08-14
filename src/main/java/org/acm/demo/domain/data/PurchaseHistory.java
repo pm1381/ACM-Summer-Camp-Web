@@ -31,7 +31,8 @@ public class  PurchaseHistory {
         return totalPrice;
     }
 
-    public void setTotalPrice(Long totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotalPrice(Long addedPrice) {
+        this.totalPrice = totalPrice+addedPrice;
     }
+
 }

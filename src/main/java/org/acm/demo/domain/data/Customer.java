@@ -13,8 +13,8 @@ public class Customer extends User {
     @JsonIgnore
     private PurchaseHistory purchaseHistory;
 
-    public Customer(Integer id, String name, String family, String phone, String email, String password) {
-        super(id, name, family, phone, email, password);
+    public Customer(String name, String family, String phone, String email, String password) {
+        super(name, family, phone, email, password);
         setRole(Role.CUSTOMER);
     }
 
@@ -40,5 +40,16 @@ public class Customer extends User {
 
     public void setPurchaseHistory(PurchaseHistory purchaseHistory) {
         this.purchaseHistory = purchaseHistory;
+    }
+
+    public void deleteAnItemFromHistory(Product product) {
+        getPurchaseHistory().getAllPurchasedProducts().remove(product);
+    }
+
+    public void addToCostumerHistory(Product product,int quantity) {
+        if(getPurchaseHistory().getAllPurchasedProducts().containsKey(product)){
+            quantity +=  getPurchaseHistory().getAllPurchasedProducts().get(product);
+        }
+        getPurchaseHistory().getAllPurchasedProducts().put(product,quantity);
     }
 }

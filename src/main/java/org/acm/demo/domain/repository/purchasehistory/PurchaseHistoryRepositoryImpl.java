@@ -38,11 +38,6 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
     }
 
     @Override
-    public void deleteAnItemFromHistory(Customer customer, Product product) {
-        customer.getPurchaseHistory().getAllPurchasedProducts().remove(product);
-    }
-
-    @Override
     public List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer) {
         return purchaseHistories.stream().filter(purchaseHistory -> purchaseHistory.getId().equals(customer.getId()))
                 .collect(Collectors.toList());
