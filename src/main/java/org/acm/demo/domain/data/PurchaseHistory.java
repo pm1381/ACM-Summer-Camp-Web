@@ -5,10 +5,9 @@ import java.util.Date;
 /**
  * @author : Bahar Zolfaghari
  **/
-public class PurchaseHistory {
+public class  PurchaseHistory {
     private Integer id;
     private Cart cart;
-    private Date date;
     private Long totalPrice;
 
     public Integer getId() {
@@ -28,16 +27,7 @@ public class PurchaseHistory {
         this.cart = cart;
         return this;
     }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public PurchaseHistory setDate(Date date) {
-        this.date = date;
-        return this;
-    }
-
+    
     public Long getTotalPrice() {
         return totalPrice;
     }
