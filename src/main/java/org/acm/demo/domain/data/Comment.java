@@ -41,8 +41,8 @@ public class Comment {
         return like;
     }
 
-    public Comment setLike(Integer like) {
-        this.like = like;
+    public Comment setLike() {
+        like++;
         return this;
     }
 
@@ -50,8 +50,8 @@ public class Comment {
         return dislike;
     }
 
-    public Comment setDislike(Integer dislike) {
-        this.dislike = dislike;
+    public Comment setDislike() {
+        dislike++;
         return this;
     }
 }
