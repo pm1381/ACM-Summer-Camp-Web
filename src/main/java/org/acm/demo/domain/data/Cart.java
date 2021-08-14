@@ -52,4 +52,14 @@ public class Cart {
         this.status = status;
         return this;
     }
+
+    public Product referToProductPage(int productId){
+        Product referProduct = null;
+        for (Map.Entry<Product,Integer> entry : getProducts().entrySet()){
+            if(entry.getKey().getId() == productId){
+                referProduct = entry.getKey();
+            }
+        }
+        return referProduct;
+    }
 }

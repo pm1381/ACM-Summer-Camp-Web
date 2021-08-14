@@ -26,4 +26,8 @@ public class Credit {
     public void setBalance(Long addedMoney) {
         this.balance = balance + addedMoney;//balance += addedMoney
     }
+
+    public void withDrawAccount(int money){
+        this.balance = balance - money;
+    }
 }
