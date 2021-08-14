@@ -15,42 +15,39 @@ public class Cart {
     public Cart(Integer id,Customer customer) {
         this.id = id;
         this.customer=customer;
+        status = CartStatus.EMPTY;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public Cart setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
-        return this;
     }
 
     public Customer getCustomer() {
         return customer;
     }
 
-    public Cart setCustomer(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
-        return this;
     }
 
     public Map<Product, Integer> getProducts() {
         return products;
     }
 
-    public Cart setProducts(Map<Product, Integer> products) {
+    public void setProducts(Map<Product, Integer> products) {
         this.products = products;
-        return this;
     }
 
     public CartStatus getStatus() {
         return status;
     }
 
-    public Cart setStatus(CartStatus status) {
+    public void setStatus(CartStatus status) {
         this.status = status;
-        return this;
     }
 
     public Product referToProductPage(int productId){
@@ -62,4 +59,6 @@ public class Cart {
         }
         return referProduct;
     }
+
+
 }
