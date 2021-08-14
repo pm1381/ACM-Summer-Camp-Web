@@ -12,6 +12,11 @@ public class Cart {
     private Map<Product, Integer> products = new HashMap<>();
     private CartStatus status;
 
+    public Cart(Integer id,Customer customer) {
+        this.id = id;
+        this.customer=customer;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -13,9 +13,9 @@ import java.util.Optional;
 public class CustomerRepositoryImpl implements CustomerRepository {
     private final List<Customer> customers = new ArrayList<>();
     private CustomerRepository customerRepository;
+    private static int costumerId =1;
 
     private CustomerRepositoryImpl() {
-
     }
 
     public CustomerRepository getCustomerRepository() {
@@ -27,6 +27,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public void saveCustomer(Customer customer) {
+        customer.setId(costumerId++);
+        customer.setInitials(customer.getId());
         customers.add(customer);
     }
 

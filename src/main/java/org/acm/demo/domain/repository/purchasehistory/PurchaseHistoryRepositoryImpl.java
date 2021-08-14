@@ -17,7 +17,6 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
     private PurchaseHistoryRepository purchaseHistoryRepository;
 
     private PurchaseHistoryRepositoryImpl() {
-
     }
 
     public List<PurchaseHistory> getPurchaseHistories() {

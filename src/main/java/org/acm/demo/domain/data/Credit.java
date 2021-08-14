@@ -7,21 +7,23 @@ public class Credit {
     private Integer id;
     private Long balance;
 
+    public Credit(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public Credit setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
-        return this;
     }
 
     public Long getBalance() {
         return balance;
     }
 
-    public Credit setBalance(Long addedMoney) {
+    public void setBalance(Long addedMoney) {
         this.balance = balance + addedMoney;//balance += addedMoney
-        return this;
     }
 }

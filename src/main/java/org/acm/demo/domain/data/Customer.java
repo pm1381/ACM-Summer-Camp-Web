@@ -18,6 +18,12 @@ public class Customer extends User {
         setRole(Role.CUSTOMER);
     }
 
+    public void setInitials(int id){
+        purchaseHistory = new PurchaseHistory(id);
+        credit = new Credit(id);
+        cart = new Cart(id,this);
+    }
+
     public Credit getCredit() {
         return credit;
     }
