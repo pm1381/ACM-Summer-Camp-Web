@@ -38,9 +38,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public void updateCustomer(Customer customer) {
-        customers.removeIf(c -> c.getId().equals(customer.getId()));
-        customers.add(customer);
+    public void updateCustomer(Customer costumer,int id) {
+        Customer oldCostumer = getCostumerById(id);
+        if(oldCostumer == null){
+            return;
+        }
+        oldCostumer.setEmail(costumer.getEmail());
+        oldCostumer.setFamily(costumer.getFamily());
+        oldCostumer.setName(costumer.getName());
+        oldCostumer.setPassword(costumer.getPassword());
+        oldCostumer.setPhone(costumer.getPhone());
     }
 
     @Override
@@ -69,3 +76,12 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         return customers;
     }
 }
+
+
+/*
+    @Override
+    public void updateCustomer(Customer customer) {
+        customers.removeIf(c -> c.getId().equals(customer.getId()));
+        customers.add(customer);
+    }
+ */

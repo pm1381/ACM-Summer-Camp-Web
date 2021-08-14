@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface CustomerRepository {
     void saveCustomer(Customer customer);
     void deleteCustomer(Customer customer);
-    void updateCustomer(Customer customer);
+    void updateCustomer(Customer customer,int id);
     Optional<Customer> getCustomerByEmail(String email);
     Customer getCostumerById(int id);
     Optional<Customer> getCustomerByEmailAndPassword(String email, String password);
