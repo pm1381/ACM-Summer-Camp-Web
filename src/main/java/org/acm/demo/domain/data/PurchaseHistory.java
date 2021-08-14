@@ -1,39 +1,37 @@
 package org.acm.demo.domain.data;
 
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author : Bahar Zolfaghari
  **/
 public class  PurchaseHistory {
     private Integer id;
-    private Cart cart;
-    private Long totalPrice;
+    private Map<Product,Integer> allPurchasedProducts = new HashMap<>();
+    private Long totalPrice = 0L;
+
+    public PurchaseHistory(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    public PurchaseHistory setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
-        return this;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
-    public PurchaseHistory setCart(Cart cart) {
-        this.cart = cart;
-        return this;
+    public Map<Product, Integer> getAllPurchasedProducts() {
+        return allPurchasedProducts;
     }
 
     public Long getTotalPrice() {
         return totalPrice;
     }
 
-    public PurchaseHistory setTotalPrice(Long totalPrice) {
+    public void setTotalPrice(Long totalPrice) {
         this.totalPrice = totalPrice;
-        return this;
     }
 }

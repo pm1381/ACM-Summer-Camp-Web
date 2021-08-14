@@ -12,6 +12,15 @@ public class User {
     private String password;
     private Role role;
 
+    public User(Integer id, String name, String family, String phone, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.family = family;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+    }
+
     public Integer getId() {
         return id;
     }

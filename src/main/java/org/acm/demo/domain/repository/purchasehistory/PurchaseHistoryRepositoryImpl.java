@@ -1,6 +1,7 @@
 package org.acm.demo.domain.repository.purchasehistory;
 
 import org.acm.demo.domain.data.Customer;
+import org.acm.demo.domain.data.Product;
 import org.acm.demo.domain.data.PurchaseHistory;
 
 import java.util.ArrayList;
@@ -35,10 +36,15 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
     public void deletePurchaseHistory(PurchaseHistory purchaseHistory) {
         purchaseHistories.remove(purchaseHistory);
     }
-    
+
+    @Override
+    public void deleteAnItemFromHistory(Customer customer, Product product) {
+        customer.getPurchaseHistory().getAllPurchasedProducts().remove(product);
+    }
+
     @Override
     public List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer) {
-        return purchaseHistories.stream().filter(purchaseHistory -> purchaseHistory.getCart().getCustomer().equals(customer))
+        return purchaseHistories.stream().filter(purchaseHistory -> purchaseHistory.getId().equals(customer.getId()))
                 .collect(Collectors.toList());
     }
 }
