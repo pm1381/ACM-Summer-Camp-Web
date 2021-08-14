@@ -40,9 +40,17 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public void updateProduct(Product product) {
-        products.removeIf(p -> p.getId().equals(product.getId()));
-        products.add(product);
+    public void updateProduct(int id,Product newProduct) {
+        Product oldProduct = getProductById(id);
+        if(oldProduct == null){
+            return;
+        }
+        oldProduct.setCategory(newProduct.getCategory());
+        oldProduct.setCompany(newProduct.getCompany());
+        oldProduct.setPrice(newProduct.getPrice());
+        oldProduct.setName(newProduct.getName());
+        oldProduct.setQuantity(newProduct.getQuantity());
+        oldProduct.setYear(newProduct.getYear());
     }
 
     @Override
@@ -96,3 +104,12 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
     }
 }
+
+
+/*
+    @Override
+    public void updateProduct(Product product) {
+        products.removeIf(p -> p.getId().equals(product.getId()));
+        products.add(product);
+    }
+ */

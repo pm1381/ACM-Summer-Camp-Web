@@ -11,7 +11,7 @@ import java.util.List;
 public interface ProductRepository {
     void saveProduct(Product product);
     void deleteProduct(Product product);
-    void updateProduct(Product product);
+    void updateProduct(int id,Product product);
     List<Product> getProducts();
     Product getProductById(int id);
     List<Product> getProductsByCategory(String category);

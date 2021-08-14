@@ -17,7 +17,7 @@ public class Product {
     private String company;
     private Integer quantity;
     private String category;
-    private Integer rating = 5; // all have rating 5 at FIRST
+    private Integer rating = 5; // all products have rating 5 at FIRST
     private List<Comment> comments = new ArrayList<>();
 
     public Product(String name, Long price, Integer year, String company, Integer quantity, String category) {
