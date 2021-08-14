@@ -13,6 +13,7 @@ public interface CustomerRepository {
     void deleteCustomer(Customer customer);
     void updateCustomer(Customer customer);
     Optional<Customer> getCustomerByEmail(String email);
+    Customer getCostumerById(int id);
     Optional<Customer> getCustomerByEmailAndPassword(String email, String password);
     List<Customer> getAllCustomers();
 }

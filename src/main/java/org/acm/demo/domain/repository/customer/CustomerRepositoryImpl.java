@@ -49,6 +49,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
+    public Customer getCostumerById(int id){
+        for(Customer costumer : customers){
+            if(id == costumer.getId()){
+                return costumer;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public Optional<Customer> getCustomerByEmailAndPassword(String email, String password) {
         return customers.stream().filter(customer -> customer.getEmail().equals(email) &&
                 customer.getPassword().equals(email)).findFirst();
