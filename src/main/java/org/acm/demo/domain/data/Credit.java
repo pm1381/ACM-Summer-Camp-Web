@@ -20,8 +20,8 @@ public class Credit {
         return balance;
     }
 
-    public Credit setBalance(Long balance) {
-        this.balance = balance;
+    public Credit setBalance(Long addedMoney) {
+        this.balance = balance + addedMoney;//balance += addedMoney
         return this;
     }
 }
