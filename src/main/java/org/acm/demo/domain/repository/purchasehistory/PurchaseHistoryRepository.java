@@ -11,6 +11,5 @@ import java.util.List;
 public interface PurchaseHistoryRepository {
     void savePurchaseHistory(PurchaseHistory purchaseHistory);
     void deletePurchaseHistory(PurchaseHistory purchaseHistory);
-    void updatePurchaseHistory(PurchaseHistory purchaseHistory);
     List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer);
 }

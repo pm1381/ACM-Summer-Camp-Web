@@ -35,13 +35,7 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
     public void deletePurchaseHistory(PurchaseHistory purchaseHistory) {
         purchaseHistories.remove(purchaseHistory);
     }
-
-    @Override
-    public void updatePurchaseHistory(PurchaseHistory purchaseHistory) {
-        purchaseHistories.removeIf(p -> p.getId().equals(purchaseHistory.getId()));
-        purchaseHistories.add(purchaseHistory);
-    }
-
+    
     @Override
     public List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer) {
         return purchaseHistories.stream().filter(purchaseHistory -> purchaseHistory.getCart().getCustomer().equals(customer))
