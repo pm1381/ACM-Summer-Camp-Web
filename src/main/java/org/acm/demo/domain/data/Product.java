@@ -90,9 +90,8 @@ public class Product {
         return rating;
     }
 
-    public Product setRating(Integer rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
-        return this;
     }
 
     public List<Comment> getComments() {

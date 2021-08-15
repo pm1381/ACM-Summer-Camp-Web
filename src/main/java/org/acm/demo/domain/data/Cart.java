@@ -60,5 +60,17 @@ public class Cart {
         return referProduct;
     }
 
+    public void addToCart(int quantity,Product product){
+        if(getProducts().containsKey(product)){
+            if(quantity +getProducts().get(product) <= product.getQuantity() ){
+                getProducts().put(product,getProducts().get(product)+quantity);
+            }
+        }
+        getProducts().put(product,quantity);
+        setStatus(CartStatus.AWAITING_PAYMENT);
+    }
+
+
+
 
 }

@@ -50,6 +50,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         oldProduct.setPrice(newProduct.getPrice());
         oldProduct.setName(newProduct.getName());
         oldProduct.setQuantity(newProduct.getQuantity());
+        oldProduct.setRating(newProduct.getRating());
         oldProduct.setYear(newProduct.getYear());
     }
 

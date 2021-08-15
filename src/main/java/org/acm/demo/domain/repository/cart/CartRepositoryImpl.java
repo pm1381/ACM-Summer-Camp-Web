@@ -16,7 +16,6 @@ public class CartRepositoryImpl implements CartRepository {
     private static CartRepository cartRepository = null;
 
     private CartRepositoryImpl() {
-
     }
 
     public static CartRepository getCartRepository() {
