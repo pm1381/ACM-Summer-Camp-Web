@@ -1,5 +1,7 @@
 package org.acm.demo.domain.data;
 
+import org.acm.demo.domain.repository.purchasehistory.PurchaseHistoryRepositoryImpl;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,6 +62,7 @@ public class Cart {
         return referProduct;
     }
 
+    //TODO: METHODS CAN BE IN SERVICE LAYER
     public void addToCart(int quantity,Product product){
         if(getProducts().containsKey(product)){
             if(quantity +getProducts().get(product) <= product.getQuantity() ){
@@ -70,9 +73,29 @@ public class Cart {
         setStatus(CartStatus.AWAITING_PAYMENT);
     }
 
-    public void clearCart(Cart cart) {
+    public void clearCart() {
         getProducts().clear();
-        cart.setStatus(CartStatus.EMPTY);
+        setStatus(CartStatus.EMPTY);
+    }
+
+    public void pay(){
+        Long payable = 0L;
+        for(Map.Entry<Product,Integer> each : getProducts().entrySet()){
+            payable = payable + ( each.getKey().getPrice() * each.getValue());
+        }
+        if(customer.getCredit().getBalance() >= payable){
+            status = CartStatus.PAID;
+            customer.getCredit().withDrawAccount(payable);
+            addToHistory();
+            customer.getPurchaseHistory().setTotalPrice(payable);
+        }
+        clearCart();
+    }
+
+    private void addToHistory() {
+        for(Map.Entry<Product,Integer> each : getProducts().entrySet()){
+            getCustomer().addToCostumerHistory(each.getKey(), each.getValue());
+        }
     }
 
     public void removeFromCart(Product product){

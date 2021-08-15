@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 
 /**
- * @author : Bahar Zolfaghari
+ * @author : Bahar Zolfaghari & Parham
  **/
 public class Customer extends User {
     @JsonIgnore
@@ -50,6 +50,7 @@ public class Customer extends User {
         this.purchaseHistory = purchaseHistory;
     }
 
+    //TODO : THESE TWO METHODS BELOW MAY HAVE ANOTHER PLACE
     public void deleteAnItemFromHistory(Product product) {
         getPurchaseHistory().getAllPurchasedProducts().remove(product);
     }

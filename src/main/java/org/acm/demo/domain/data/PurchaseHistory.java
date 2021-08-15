@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author : Bahar Zolfaghari
+ * @author : Bahar Zolfaghari & Parham
  **/
 public class  PurchaseHistory {
     private Integer id;

@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * @author : Bahar Zolfaghari
+ * @author : Bahar Zolfaghari & Parham
  **/
 public class CommentRepositoryImpl implements CommentRepository {
     private final List<Comment> comments = new ArrayList<>();

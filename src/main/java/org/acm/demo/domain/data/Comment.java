@@ -3,7 +3,7 @@ package org.acm.demo.domain.data;
 import org.acm.demo.domain.repository.comment.CommentRepositoryImpl;
 
 /**
- * @author : Bahar Zolfaghari
+ * @author : Bahar Zolfaghari & Parham
  **/
 public class Comment {
     private Integer id;

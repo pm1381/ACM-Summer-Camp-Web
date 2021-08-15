@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author : Bahar Zolfaghari
+ * @author : Bahar Zolfaghari & Parham
  **/
 public class Product {
     @JsonIgnore
@@ -114,5 +114,19 @@ public class Product {
     public void updateAComment(int id,String description){
         Comment oldComment = CommentRepositoryImpl.getInstance().getCommentById(this,id);
         CommentRepositoryImpl.getInstance().updateComment(oldComment,description);
+    }
+
+    public void negativeScoreToComment(Comment comment){
+        if(! comments.contains(comment)){
+            return;
+        }
+        comment.setDislike();
+    }
+
+    public void positiveScoreToComment(Comment comment){
+        if(! comments.contains(comment)){
+            return;
+        }
+        comment.setLike();
     }
 }

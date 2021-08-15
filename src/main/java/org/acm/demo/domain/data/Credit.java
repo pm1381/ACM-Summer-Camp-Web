@@ -27,7 +27,7 @@ public class Credit {
         this.balance = balance + addedMoney;//balance += addedMoney
     }
 
-    public void withDrawAccount(int money){
+    public void withDrawAccount(Long money){
         this.balance = balance - money;
     }
 }
