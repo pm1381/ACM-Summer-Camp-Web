@@ -56,11 +56,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public List<Product> filterProducts(String name, String category, Long minPrice,
                                         Long maxPrice, String company, Integer rating) {
-        return products.stream().filter(product -> product.getName().equals(name) &&
-                product.getCategory().equals(category) &&
-                product.getPrice() >= minPrice &&
-                product.getPrice() <= maxPrice &&
-                product.getCompany().equals(company) &&
+        return products.stream().filter(product -> product.getName().equals(name) ||
+                product.getCategory().equals(category) ||
+                product.getPrice() >= minPrice ||
+                product.getPrice() <= maxPrice ||
+                product.getCompany().equals(company) ||
                 product.getRating().equals(rating)
         ).collect(Collectors.toList());
     }
