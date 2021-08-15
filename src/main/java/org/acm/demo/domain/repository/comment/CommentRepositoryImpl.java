@@ -2,6 +2,7 @@ package org.acm.demo.domain.repository.comment;
 
 import org.acm.demo.domain.data.Comment;
 import org.acm.demo.domain.data.Customer;
+import org.acm.demo.domain.data.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 public class CommentRepositoryImpl implements CommentRepository {
     private final List<Comment> comments = new ArrayList<>();
     private CommentRepository commentRepository;
+    private static int lastId = 111;
 
     private CommentRepositoryImpl() {
 
@@ -27,13 +29,13 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public void saveComment(Comment comment) {
-        comments.add(comment);
+    public void saveComment(Product product, Customer costumer, String description) {
+        product.getComments().add(new Comment(lastId++,costumer,description));
     }
 
     @Override
-    public void deleteComment(Comment comment) {
-        comments.remove(comment);
+    public void deleteComment(Product product,int commentId) {
+        product.getComments().removeIf(comment -> commentId == comment.getId());
     }
 
     @Override
