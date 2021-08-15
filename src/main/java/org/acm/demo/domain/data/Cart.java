@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author : Bahar Zolfaghari
+ * @author : Bahar Zolfaghari & Parham
  **/
 public class Cart {
     private Integer id;
@@ -70,7 +70,12 @@ public class Cart {
         setStatus(CartStatus.AWAITING_PAYMENT);
     }
 
+    public void clearCart(Cart cart) {
+        getProducts().clear();
+        cart.setStatus(CartStatus.EMPTY);
+    }
 
-
-
+    public void removeFromCart(Product product){
+        getProducts().remove(product);
+    }
 }
