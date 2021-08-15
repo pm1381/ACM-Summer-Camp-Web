@@ -13,13 +13,13 @@ import java.util.Optional;
  **/
 public class CartRepositoryImpl implements CartRepository {
     private final List<Cart> carts = new ArrayList<>();
-    private CartRepository cartRepository;
+    private static CartRepository cartRepository;
 
     private CartRepositoryImpl() {
 
     }
 
-    public CartRepository getCartRepository() {
+    public static CartRepository getCartRepository() {
         if (Objects.isNull(cartRepository)) {
             cartRepository = new CartRepositoryImpl();
         }
@@ -45,5 +45,14 @@ public class CartRepositoryImpl implements CartRepository {
     @Override
     public Optional<Cart> getCartByCustomer(Customer customer) {
         return carts.stream().filter(cart -> cart.getCustomer().equals(customer)).findFirst();
+    }
+
+    @Override
+    public Integer getLastCartId() {
+        if (carts.isEmpty()) {
+            return 0;
+        }
+        int lastCustomerIndex = carts.size() - 1;
+        return carts.get(lastCustomerIndex).getId();
     }
 }

@@ -13,4 +13,5 @@ public interface CartRepository {
     void deleteCart(Cart cart);
     void updateCart(Cart cart);
     Optional<Cart> getCartByCustomer(Customer customer);
+    Integer getLastCartId();
 }
