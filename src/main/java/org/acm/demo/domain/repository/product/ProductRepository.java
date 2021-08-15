@@ -17,4 +17,5 @@ public interface ProductRepository {
     List<Product> filterProducts(String name, String category, Long minPrice,
                                  Long maxPrice, String company, Integer rating);
     List<Product> sortProducts(ProductFilterOption productFilterOption);
+    Integer getLastProductId();
 }

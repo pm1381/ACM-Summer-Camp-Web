@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
  **/
 public class ProductRepositoryImpl implements ProductRepository {
     private final List<Product> products = new ArrayList<>();
-    private ProductRepository productRepository;
+    private static ProductRepository productRepository;
 
     private ProductRepositoryImpl() {
 
     }
 
-    public ProductRepository getProductRepository() {
+    public static ProductRepository getProductRepository() {
         if (Objects.isNull(productRepository)) {
             productRepository = new ProductRepositoryImpl();
         }
@@ -77,5 +77,14 @@ public class ProductRepositoryImpl implements ProductRepository {
             default:
                 return products;
         }
+    }
+
+    @Override
+    public Integer getLastProductId() {
+        if (products.isEmpty()) {
+            return 0;
+        }
+        int lastCustomerIndex = products.size() - 1;
+        return products.get(lastCustomerIndex).getId();
     }
 }
