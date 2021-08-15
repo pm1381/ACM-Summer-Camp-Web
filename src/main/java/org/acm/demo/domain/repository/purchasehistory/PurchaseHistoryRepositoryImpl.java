@@ -12,18 +12,18 @@ import java.util.stream.Collectors;
  * @author : Bahar Zolfaghari
  **/
 public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository {
-    private List<PurchaseHistory> purchaseHistories = new ArrayList<>();
-    private PurchaseHistoryRepository purchaseHistoryRepository;
+    private final List<PurchaseHistory> purchaseHistories = new ArrayList<>();
+    private static PurchaseHistoryRepository purchaseHistoryRepository;
 
     private PurchaseHistoryRepositoryImpl() {
 
     }
 
-    public List<PurchaseHistory> getPurchaseHistories() {
+    public static PurchaseHistoryRepository getPurchaseHistoryRepository() {
         if (Objects.isNull(purchaseHistoryRepository)) {
             purchaseHistoryRepository = new PurchaseHistoryRepositoryImpl();
         }
-        return purchaseHistories;
+        return purchaseHistoryRepository;
     }
 
     @Override
@@ -46,5 +46,14 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
     public List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer) {
         return purchaseHistories.stream().filter(purchaseHistory -> purchaseHistory.getCart().getCustomer().equals(customer))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer getLastPurchaseHistoriesId() {
+        if (purchaseHistories.isEmpty()) {
+            return 0;
+        }
+        int lastCustomerIndex = purchaseHistories.size() - 1;
+        return purchaseHistories.get(lastCustomerIndex).getId();
     }
 }
