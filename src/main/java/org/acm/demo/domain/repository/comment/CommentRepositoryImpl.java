@@ -14,18 +14,17 @@ import java.util.stream.Collectors;
  **/
 public class CommentRepositoryImpl implements CommentRepository {
     private final List<Comment> comments = new ArrayList<>();
-    private CommentRepository commentRepository;
+    private static CommentRepository instance = null;
     private static int lastId = 111;
 
     private CommentRepositoryImpl() {
-
     }
 
-    public CommentRepository getCommentRepository() {
-        if (Objects.isNull(commentRepository)) {
-            commentRepository = new CommentRepositoryImpl();
+    public static CommentRepository getInstance() {
+        if(instance == null){
+            instance = new CommentRepositoryImpl();
         }
-        return commentRepository;
+        return instance;
     }
 
     @Override
@@ -39,9 +38,18 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public void updateComment(Comment comment) {
-        comments.removeIf(c -> c.getId().equals(comment.getId()));
-        comments.add(comment);
+    public void updateComment(Comment comment,String description) {
+        comment.setDescription(description);
+    }
+
+    @Override
+    public Comment getCommentById(Product product, int id) {
+        for (Comment comment : product.getComments()){
+            if(id == comment.getId()){
+                return comment;
+            }
+        }
+        return null;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package org.acm.demo.domain.data;
 
+import org.acm.demo.domain.repository.comment.CommentRepositoryImpl;
+
 /**
  * @author : Bahar Zolfaghari
  **/
@@ -7,51 +9,52 @@ public class Comment {
     private Integer id;
     private Customer customer;
     private String description;
-    private Integer like;
-    private Integer dislike;
+    private Integer like =0;
+    private Integer dislike = 0;
+
+    public Comment(Integer id,Customer customer, String description) {
+        this.customer = customer;
+        this.id = id;
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    public Comment setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
-        return this;
     }
 
     public Customer getCustomer() {
         return customer;
     }
 
-    public Comment setCustomer(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
-        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Comment setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this;
     }
 
     public Integer getLike() {
         return like;
     }
 
-    public Comment setLike() {
+    public void setLike() {
         like++;
-        return this;
     }
 
     public Integer getDislike() {
         return dislike;
     }
 
-    public Comment setDislike() {
+    public void setDislike() {
         dislike++;
-        return this;
     }
 }

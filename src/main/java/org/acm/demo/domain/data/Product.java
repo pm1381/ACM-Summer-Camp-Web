@@ -1,6 +1,7 @@
 package org.acm.demo.domain.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.acm.demo.domain.repository.comment.CommentRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,5 +101,19 @@ public class Product {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    //TODO: ALL OF THESE METHODS BELOW MUST BE IN SERVICE LAYER
+    public void addAComment(Customer costumer,String description){
+        CommentRepositoryImpl.getInstance().saveComment(this,costumer,description);
+    }
+
+    public void removeComment(int commentId){
+        CommentRepositoryImpl.getInstance().deleteComment(this,commentId);
+    }
+
+    public void updateAComment(int id,String description){
+        Comment oldComment = CommentRepositoryImpl.getInstance().getCommentById(this,id);
+        CommentRepositoryImpl.getInstance().updateComment(oldComment,description);
     }
 }

@@ -2,6 +2,8 @@ package org.acm.demo.domain.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Objects;
+
 /**
  * @author : Bahar Zolfaghari
  **/
@@ -77,5 +79,23 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getId(), user.getId()) &&
+                Objects.equals(getName(), user.getName()) &&
+                Objects.equals(getFamily(), user.getFamily()) &&
+                Objects.equals(getPhone(), user.getPhone()) &&
+                Objects.equals(getEmail(), user.getEmail()) &&
+                Objects.equals(getPassword(), user.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getFamily(), getPhone(), getEmail(), getPassword());
     }
 }
