@@ -15,4 +15,5 @@ public interface CustomerRepository {
     Optional<Customer> getCustomerByEmail(String email);
     Optional<Customer> getCustomerByEmailAndPassword(String email, String password);
     List<Customer> getAllCustomers();
+    Integer getLastCustomerId();
 }
