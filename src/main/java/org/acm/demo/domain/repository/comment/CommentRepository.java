@@ -13,4 +13,5 @@ public interface CommentRepository {
     void deleteComment(Comment comment);
     void updateComment(Comment comment);
     List<Comment> getCommentsByCustomer(Customer customer);
+    Integer getLastCommentId();
 }

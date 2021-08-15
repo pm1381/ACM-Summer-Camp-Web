@@ -13,13 +13,13 @@ import java.util.stream.Collectors;
  **/
 public class CommentRepositoryImpl implements CommentRepository {
     private final List<Comment> comments = new ArrayList<>();
-    private CommentRepository commentRepository;
+    private static CommentRepository commentRepository;
 
     private CommentRepositoryImpl() {
 
     }
 
-    public CommentRepository getCommentRepository() {
+    public static CommentRepository getCommentRepository() {
         if (Objects.isNull(commentRepository)) {
             commentRepository = new CommentRepositoryImpl();
         }
@@ -45,5 +45,14 @@ public class CommentRepositoryImpl implements CommentRepository {
     @Override
     public List<Comment> getCommentsByCustomer(Customer customer) {
         return comments.stream().filter(comment -> comment.getCustomer().equals(customer)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer getLastCommentId() {
+        if (comments.isEmpty()) {
+            return 0;
+        }
+        int lastCustomerIndex = comments.size() - 1;
+        return comments.get(lastCustomerIndex).getId();
     }
 }
