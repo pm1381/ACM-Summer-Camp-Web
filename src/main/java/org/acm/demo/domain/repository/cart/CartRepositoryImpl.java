@@ -13,13 +13,13 @@ import java.util.Optional;
  **/
 public class CartRepositoryImpl implements CartRepository {
     private final List<Cart> carts = new ArrayList<>();
-    private CartRepository cartRepository;
+    private static CartRepository cartRepository = null;
 
     private CartRepositoryImpl() {
 
     }
 
-    public CartRepository getCartRepository() {
+    public static CartRepository getCartRepository() {
         if (Objects.isNull(cartRepository)) {
             cartRepository = new CartRepositoryImpl();
         }
