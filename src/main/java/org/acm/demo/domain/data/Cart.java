@@ -86,16 +86,20 @@ public class Cart {
         if(customer.getCredit().getBalance() >= payable){
             status = CartStatus.PAID;
             customer.getCredit().withDrawAccount(payable);
-            addToHistory();
-            customer.getPurchaseHistory().setTotalPrice(payable);
+            PurchaseHistory purchaseHistory = addToHistory();
+            purchaseHistory.setTotalPrice(payable);
+            customer.getPurchaseHistories().add(purchaseHistory);
+            PurchaseHistoryRepositoryImpl.getPurchaseHistoryRepository().savePurchaseHistory(purchaseHistory);
         }
         clearCart();
     }
 
-    private void addToHistory() {
+    private PurchaseHistory addToHistory() {
+        PurchaseHistory purchaseHistory = new PurchaseHistory();
         for(Map.Entry<Product,Integer> each : getProducts().entrySet()){
-            getCustomer().addToCostumerHistory(each.getKey(), each.getValue());
+            purchaseHistory.getAllPurchasedProducts().put(each.getKey(), each.getValue());
         }
+        return purchaseHistory;
     }
 
     public void removeFromCart(Product product){
