@@ -8,12 +8,8 @@ import java.util.Map;
  **/
 public class  PurchaseHistory {
     private Integer id;
-    private Map<Product,Integer> allPurchasedProducts = new HashMap<>();
+    private final Map<Product, Integer> allPurchasedProducts = new HashMap<>();
     private Long totalPrice = 0L;
-
-    public PurchaseHistory(Integer id) {
-        this.id = id;
-    }
 
     public Integer getId() {
         return id;
