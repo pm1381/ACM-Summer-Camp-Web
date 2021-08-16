@@ -13,5 +13,4 @@ public interface PurchaseHistoryRepository {
     void savePurchaseHistory(PurchaseHistory purchaseHistory);
     void deletePurchaseHistory(PurchaseHistory purchaseHistory);
     List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer);
-    Integer getLastPurchaseHistoriesId();
 }

@@ -10,12 +10,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * @author : Bahar Zolfaghari & Parham
+ * @author : Bahar Zolfaghari & Parham Minouian
  **/
 public class CommentRepositoryImpl implements CommentRepository {
     private final List<Comment> comments = new ArrayList<>();
     private static CommentRepository instance = null;
-    private static int lastId = 111;
 
     private CommentRepositoryImpl() {
     }
@@ -29,7 +28,8 @@ public class CommentRepositoryImpl implements CommentRepository {
 
     @Override
     public void saveComment(Product product, Customer costumer, String description) {
-        product.getComments().add(new Comment(lastId++,costumer,description));
+        int newId = getLastCommentId();
+        product.getComments().add(new Comment(newId,costumer,description));
     }
 
     @Override
@@ -63,6 +63,6 @@ public class CommentRepositoryImpl implements CommentRepository {
             return 0;
         }
         int lastCustomerIndex = comments.size() - 1;
-        return comments.get(lastCustomerIndex).getId();
+        return comments.get(lastCustomerIndex).getId() + 1;
     }
 }

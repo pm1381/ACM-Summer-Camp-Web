@@ -41,13 +41,4 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
         return purchaseHistories.stream().filter(purchaseHistory -> purchaseHistory.getId().equals(customer.getId()))
                 .collect(Collectors.toList());
     }
-
-    @Override
-    public Integer getLastPurchaseHistoriesId() {
-        if (purchaseHistories.isEmpty()) {
-            return 0;
-        }
-        int lastCustomerIndex = purchaseHistories.size() - 1;
-        return purchaseHistories.get(lastCustomerIndex).getId();
-    }
 }

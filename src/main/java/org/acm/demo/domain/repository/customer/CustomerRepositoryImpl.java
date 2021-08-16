@@ -13,8 +13,6 @@ import java.util.Optional;
 public class CustomerRepositoryImpl implements CustomerRepository {
     private final List<Customer> customers = new ArrayList<>();
     private static CustomerRepository customerRepository;
-    private static int costumerId =1;
-
 
     private CustomerRepositoryImpl() {
     }
@@ -28,7 +26,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public void saveCustomer(Customer customer) {
-        customer.setId(costumerId++);
+        int newId = getLastCustomerId();
+        customer.setId(newId);
         customer.setInitials(customer.getId());
         customers.add(customer);
     }
@@ -82,16 +81,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         if (customers.isEmpty()) {
             return 0;
         }
-        int lastCustomerIndex = customers.size() - 1;
-        return customers.get(lastCustomerIndex).getId();
+        return customers.get(customers.size() - 1).getId() + 1;
     }
 }
 
-
-/*
-    @Override
-    public void updateCustomer(Customer customer) {
-        customers.removeIf(c -> c.getId().equals(customer.getId()));
-        customers.add(customer);
-    }
- */

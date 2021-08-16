@@ -45,13 +45,4 @@ public class CartRepositoryImpl implements CartRepository {
     public Optional<Cart> getCartByCustomer(Customer customer) {
         return carts.stream().filter(cart -> cart.getCustomer().equals(customer)).findFirst();
     }
-
-    @Override
-    public Integer getLastCartId() {
-        if (carts.isEmpty()) {
-            return 0;
-        }
-        int lastCustomerIndex = carts.size() - 1;
-        return carts.get(lastCustomerIndex).getId();
-    }
 }

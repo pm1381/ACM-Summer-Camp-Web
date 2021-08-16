@@ -11,12 +11,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * @author : Bahar Zolfaghari & Parham
+ * @author : Bahar Zolfaghari & Parham Minouian
  **/
 public class ProductRepositoryImpl implements ProductRepository {
     private final List<Product> products = new ArrayList<>();
     private static ProductRepository productRepository;
-    private static int productLastID = 1;
 
     private ProductRepositoryImpl() {
     }
@@ -30,7 +29,8 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void saveProduct(Product product) {
-        product.setId(productLastID++);
+        int newId = getLastProductId();
+        product.setId(newId);
         products.add(product);
     }
 
@@ -109,8 +109,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         if (products.isEmpty()) {
             return 0;
         }
-        int lastCustomerIndex = products.size() - 1;
-        return products.get(lastCustomerIndex).getId();
+        return products.get(products.size() - 1).getId() + 1;
     }
 }
 
