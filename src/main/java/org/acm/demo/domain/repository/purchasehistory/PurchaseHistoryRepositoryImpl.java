@@ -27,6 +27,7 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
 
     @Override
     public void savePurchaseHistory(PurchaseHistory purchaseHistory) {
+        purchaseHistory.setId(getLastPurchaseHistoryId() + 1);
         purchaseHistories.add(purchaseHistory);
     }
 
