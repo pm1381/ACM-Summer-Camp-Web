@@ -56,4 +56,13 @@ public class CommentRepositoryImpl implements CommentRepository {
     public List<Comment> getCommentsByCustomer(Customer customer) {
         return comments.stream().filter(comment -> comment.getCustomer().equals(customer)).collect(Collectors.toList());
     }
+
+    @Override
+    public Integer getLastCommentId() {
+        if (comments.isEmpty()) {
+            return 0;
+        }
+        int lastCustomerIndex = comments.size() - 1;
+        return comments.get(lastCustomerIndex).getId();
+    }
 }

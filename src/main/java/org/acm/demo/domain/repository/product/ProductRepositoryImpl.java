@@ -1,7 +1,8 @@
 package org.acm.demo.domain.repository.product;
 
 import org.acm.demo.domain.data.Product;
-import org.acm.demo.domain.repository.ProductFilterOption;
+import org.acm.demo.domain.repository.ProductSearchField;
+import org.acm.demo.domain.repository.ProductSortOption;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -20,7 +21,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     private ProductRepositoryImpl() {
     }
 
-    public ProductRepository getProductRepository() {
+    public static ProductRepository getProductRepository() {
         if (Objects.isNull(productRepository)) {
             productRepository = new ProductRepositoryImpl();
         }
@@ -79,20 +80,19 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<Product> filterProducts(String name, String category, Long minPrice,
-                                        Long maxPrice, String company, Integer rating) {
-        return products.stream().filter(product -> product.getName().contains(name) ||
-                product.getCategory().equals(category) ||
-                product.getPrice() >= minPrice ||
-                product.getPrice() <= maxPrice ||
-                product.getCompany().equals(company) ||
-                product.getRating().equals(rating)
+    public List<Product> searchProducts(ProductSearchField productSearchField) {
+        return products.stream().filter(product -> product.getName().equals(productSearchField.getName()) ||
+                product.getCategory().equals(productSearchField.getCategory()) ||
+                product.getPrice() >= productSearchField.getMinPrice() ||
+                product.getPrice() <= productSearchField.getMaxPrice() ||
+                product.getCompany().equals(productSearchField.getCompany()) ||
+                product.getRating().equals(productSearchField.getRating())
         ).collect(Collectors.toList());
     }
 
     @Override
-    public List<Product> sortProducts(ProductFilterOption productFilterOption) {
-        switch (productFilterOption) {
+    public List<Product> sortProducts(ProductSortOption productSortOption) {
+        switch (productSortOption) {
             case NAME:
                 return products.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
             case PRICE:
@@ -103,13 +103,14 @@ public class ProductRepositoryImpl implements ProductRepository {
                 return products;
         }
     }
+
+    @Override
+    public Integer getLastProductId() {
+        if (products.isEmpty()) {
+            return 0;
+        }
+        int lastCustomerIndex = products.size() - 1;
+        return products.get(lastCustomerIndex).getId();
+    }
 }
 
-
-/*
-    @Override
-    public void updateProduct(Product product) {
-        products.removeIf(p -> p.getId().equals(product.getId()));
-        products.add(product);
-    }
- */

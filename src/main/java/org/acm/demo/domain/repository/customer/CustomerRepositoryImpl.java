@@ -15,10 +15,11 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     private CustomerRepository customerRepository;
     private static int costumerId =1;
 
+
     private CustomerRepositoryImpl() {
     }
 
-    public CustomerRepository getCustomerRepository() {
+    public static CustomerRepository getCustomerRepository() {
         if (Objects.isNull(customerRepository)) {
             customerRepository = new CustomerRepositoryImpl();
         }
@@ -68,12 +69,21 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     @Override
     public Optional<Customer> getCustomerByEmailAndPassword(String email, String password) {
         return customers.stream().filter(customer -> customer.getEmail().equals(email) &&
-                customer.getPassword().equals(email)).findFirst();
+                customer.getPassword().equals(password)).findFirst();
     }
 
     @Override
     public List<Customer> getAllCustomers() {
         return customers;
+    }
+
+    @Override
+    public Integer getLastCustomerId() {
+        if (customers.isEmpty()) {
+            return 0;
+        }
+        int lastCustomerIndex = customers.size() - 1;
+        return customers.get(lastCustomerIndex).getId();
     }
 }
 

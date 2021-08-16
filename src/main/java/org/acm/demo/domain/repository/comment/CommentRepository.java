@@ -15,4 +15,5 @@ public interface CommentRepository {
     void updateComment(Comment comment,String description);
     Comment getCommentById(Product product, int id);
     List<Comment> getCommentsByCustomer(Customer customer);
+    Integer getLastCommentId();
 }

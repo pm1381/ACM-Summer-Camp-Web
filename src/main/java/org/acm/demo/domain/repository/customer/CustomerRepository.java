@@ -16,4 +16,5 @@ public interface CustomerRepository {
     Customer getCostumerById(int id);
     Optional<Customer> getCustomerByEmailAndPassword(String email, String password);
     List<Customer> getAllCustomers();
+    Integer getLastCustomerId();
 }
