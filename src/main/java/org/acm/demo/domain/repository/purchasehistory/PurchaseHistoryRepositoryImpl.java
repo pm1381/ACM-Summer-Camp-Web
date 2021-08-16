@@ -1,7 +1,6 @@
 package org.acm.demo.domain.repository.purchasehistory;
 
 import org.acm.demo.domain.data.Customer;
-import org.acm.demo.domain.data.Product;
 import org.acm.demo.domain.data.PurchaseHistory;
 
 import java.util.ArrayList;
@@ -40,5 +39,13 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
     public List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer) {
         return purchaseHistories.stream().filter(purchaseHistory -> purchaseHistory.getId().equals(customer.getId()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer getLastPurchaseHistoryId() {
+        if (purchaseHistories.isEmpty()) {
+            return 0;
+        }
+        return purchaseHistories.get(purchaseHistories.size() - 1).getId() + 1;
     }
 }
