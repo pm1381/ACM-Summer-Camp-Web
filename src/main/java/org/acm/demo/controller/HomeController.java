@@ -25,7 +25,6 @@ public class HomeController {
     public String registerCustomer(@RequestBody Customer customer) {
         customerRepository.saveCustomer(customer);
         cartRepository.saveCart(customer.getCart());
-        purchaseHistoryRepository.savePurchaseHistory(customer.getPurchaseHistory());
         return "Your registration was successful.";
     }
 
