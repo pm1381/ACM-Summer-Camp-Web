@@ -10,7 +10,6 @@ import java.util.List;
  **/
 public interface PurchaseHistoryRepository {
     void savePurchaseHistory(PurchaseHistory purchaseHistory);
-    void deletePurchaseHistory(PurchaseHistory purchaseHistory);
+    void deletePurchaseHistory(PurchaseHistory purchaseHistory,Customer costumer);
     List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer);
-    Integer getLastPurchaseHistoryId();
 }

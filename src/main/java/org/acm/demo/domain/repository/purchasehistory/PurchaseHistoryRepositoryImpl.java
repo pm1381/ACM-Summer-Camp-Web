@@ -15,6 +15,7 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
     private final List<PurchaseHistory> purchaseHistories = new ArrayList<>();
     private static PurchaseHistoryRepository purchaseHistoryRepository;
 
+    // total
     private PurchaseHistoryRepositoryImpl() {
     }
 
@@ -27,26 +28,18 @@ public class PurchaseHistoryRepositoryImpl implements PurchaseHistoryRepository 
 
     @Override
     public void savePurchaseHistory(PurchaseHistory purchaseHistory) {
-        purchaseHistory.setId(getLastPurchaseHistoryId() + 1);
         purchaseHistories.add(purchaseHistory);
     }
 
     @Override
-    public void deletePurchaseHistory(PurchaseHistory purchaseHistory) {
+    public void deletePurchaseHistory(PurchaseHistory purchaseHistory,Customer costumer) {
         purchaseHistories.remove(purchaseHistory);
+        costumer.getPurchaseHistories().remove(purchaseHistory);
     }
 
     @Override
     public List<PurchaseHistory> getPurchaseHistoriesByCustomer(Customer customer) {
         return purchaseHistories.stream().filter(purchaseHistory -> purchaseHistory.getId().equals(customer.getId()))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public Integer getLastPurchaseHistoryId() {
-        if (purchaseHistories.isEmpty()) {
-            return 0;
-        }
-        return purchaseHistories.get(purchaseHistories.size() - 1).getId() + 1;
     }
 }

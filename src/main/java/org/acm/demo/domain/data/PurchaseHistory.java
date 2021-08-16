@@ -11,6 +11,9 @@ public class  PurchaseHistory {
     private final Map<Product, Integer> allPurchasedProducts = new HashMap<>();
     private Long totalPrice = 0L;
 
+    public PurchaseHistory() {
+    }
+
     public Integer getId() {
         return id;
     }
