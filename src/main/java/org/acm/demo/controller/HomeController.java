@@ -3,8 +3,6 @@ package org.acm.demo.controller;
 import org.acm.demo.domain.data.*;
 import org.acm.demo.domain.repository.cart.CartRepository;
 import org.acm.demo.domain.repository.cart.CartRepositoryImpl;
-import org.acm.demo.domain.repository.credit.CreditRepository;
-import org.acm.demo.domain.repository.credit.CreditRepositoryImpl;
 import org.acm.demo.domain.repository.customer.CustomerRepository;
 import org.acm.demo.domain.repository.customer.CustomerRepositoryImpl;
 import org.acm.demo.domain.repository.purchasehistory.PurchaseHistoryRepository;
@@ -20,34 +18,14 @@ import java.util.Optional;
 @RequestMapping("/home")
 public class HomeController {
     private final CustomerRepository customerRepository = CustomerRepositoryImpl.getCustomerRepository();
-    private final CreditRepository creditRepository = CreditRepositoryImpl.getCreditRepository();
     private final CartRepository cartRepository = CartRepositoryImpl.getCartRepository();
     private final PurchaseHistoryRepository purchaseHistoryRepository= PurchaseHistoryRepositoryImpl.getPurchaseHistoryRepository();
 
     @PostMapping("/register")
-    public String registerCustomer(@RequestBody User user) {
-        //ToDo: check duplicate customer using email
-        Credit credit = new Credit();
-        credit.setId(creditRepository.getLastCreditId() + 1);
-        creditRepository.saveCredit(credit);
-        Cart cart = new Cart();
-        cart.setId(cartRepository.getLastCartId() + 1);
-        cartRepository.saveCart(cart);
-        PurchaseHistory purchaseHistory = new PurchaseHistory();
-        purchaseHistory.setId(purchaseHistoryRepository.getLastPurchaseHistoriesId() + 1);
-        purchaseHistoryRepository.savePurchaseHistory(purchaseHistory);
-        Customer customer = new Customer();
-        customer.setCredit(credit)
-                .setCart(cart)
-                .setPurchaseHistory(purchaseHistory)
-                .setId(customerRepository.getLastCustomerId() + 1)
-                .setName(user.getName())
-                .setFamily(user.getFamily())
-                .setPhone(user.getPhone())
-                .setEmail(user.getEmail())
-                .setPassword(user.getPassword())
-                .setRole(Role.CUSTOMER);
+    public String registerCustomer(@RequestBody Customer customer) {
         customerRepository.saveCustomer(customer);
+        cartRepository.saveCart(customer.getCart());
+        purchaseHistoryRepository.savePurchaseHistory(customer.getPurchaseHistory());
         return "Your registration was successful.";
     }
 

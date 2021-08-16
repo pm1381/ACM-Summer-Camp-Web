@@ -12,7 +12,7 @@ import java.util.Optional;
  **/
 public class CustomerRepositoryImpl implements CustomerRepository {
     private final List<Customer> customers = new ArrayList<>();
-    private CustomerRepository customerRepository;
+    private static CustomerRepository customerRepository;
     private static int costumerId =1;
 
 

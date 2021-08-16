@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  **/
 public class ProductRepositoryImpl implements ProductRepository {
     private final List<Product> products = new ArrayList<>();
-    private ProductRepository productRepository;
+    private static ProductRepository productRepository;
     private static int productLastID = 1;
 
     private ProductRepositoryImpl() {
