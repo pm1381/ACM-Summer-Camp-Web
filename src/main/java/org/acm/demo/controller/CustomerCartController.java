@@ -27,19 +27,19 @@ public class CustomerCartController {
         return customer.getCart();
     }
 
-    @GetMapping("/pay/{customerId}")
+    @GetMapping("pay/{customerId}")
     public String payCart(@PathVariable Integer customerId) {
         Customer customer = customerRepository.getCostumerById(customerId);
         customer.getCart().pay();
         return "Payment was successful";
     }
 
-    @GetMapping("/{customerId}/cart/remove/product/{productId}")
+    @GetMapping("{customerId}/cart/remove/product/{productId}")
     public String removeProductFromCart(@PathVariable Integer customerId, @PathVariable Integer productId) {
         Customer customer = customerRepository.getCostumerById(customerId);
         Product product = productRepository.getProductById(productId);
         if (customer.getCart().getProducts().containsKey(product)) {
-            customer.getCart().getProducts().remove(product);
+            customer.getCart().removeFromCart(product);
             return "Product successfully removed from cart.";
         }
         else {

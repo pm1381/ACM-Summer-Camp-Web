@@ -96,6 +96,7 @@ public class Cart {
 
     private PurchaseHistory addToHistory() {
         PurchaseHistory purchaseHistory = new PurchaseHistory();
+        purchaseHistory.setId(getCustomer().getId());
         for(Map.Entry<Product,Integer> each : getProducts().entrySet()){
             purchaseHistory.getAllPurchasedProducts().put(each.getKey(), each.getValue());
         }

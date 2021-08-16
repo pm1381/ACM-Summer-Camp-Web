@@ -21,14 +21,14 @@ public class HomeController {
     private final CartRepository cartRepository = CartRepositoryImpl.getCartRepository();
     private final PurchaseHistoryRepository purchaseHistoryRepository= PurchaseHistoryRepositoryImpl.getPurchaseHistoryRepository();
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public String registerCustomer(@RequestBody Customer customer) {
         customerRepository.saveCustomer(customer);
         cartRepository.saveCart(customer.getCart());
         return "Your registration was successful.";
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public String loginCustomer(@RequestBody String body) {
         //login body -> email: [email], password: [password]
         String[] tokens = body.split(", ");
