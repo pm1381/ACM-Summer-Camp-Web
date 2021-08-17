@@ -21,7 +21,9 @@ public class ProductController {
     private final CustomerRepository customerRepository = CustomerRepositoryImpl.getCustomerRepository();
 
     @GetMapping
-    public List<Product> showAllProducts(){return productRepository.getProducts();}
+    public List<Product> showAllProducts() {
+        return productRepository.getProducts();
+    }
 
     @GetMapping("/id/{productId}")
     public Product getProductById(@PathVariable("productId") int id){
