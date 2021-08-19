@@ -32,6 +32,7 @@ public class HomeController {
     public String loginCustomer(@RequestBody String body) {
         //login body -> email: [email], password: [password]
         String[] tokens = body.split(", ");
+        //System.out.println(tokens[0]+ " " + tokens[1]);
         String email = tokens[0].split(": ")[1];
         String password = tokens[1].split(": ")[1];
         Optional<Customer> customerByEmailAndPassword = customerRepository.getCustomerByEmailAndPassword(email, password);

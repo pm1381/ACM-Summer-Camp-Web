@@ -129,4 +129,11 @@ public class Product {
         }
         comment.setLike();
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

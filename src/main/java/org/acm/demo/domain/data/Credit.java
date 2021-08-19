@@ -5,7 +5,7 @@ package org.acm.demo.domain.data;
  **/
 public class Credit {
     private Integer id;
-    private Long balance;
+    private Long balance = 0L;
 
     public Credit(Integer id) {
         this.id = id;

@@ -21,7 +21,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/dashBoard")
 public class DashBoardController {
-    private final CartRepository cartRepository = CartRepositoryImpl.getCartRepository();
     private final CustomerRepository customerRepository = CustomerRepositoryImpl.getCustomerRepository();
     private final CommentRepository commentRepository = CommentRepositoryImpl.getInstance();
     private final PurchaseHistoryRepository purchaseHistoryRepository =
@@ -32,7 +31,7 @@ public class DashBoardController {
         return customerRepository.getCostumerById(id);
     }
 
-    @GetMapping("{email}")
+    @GetMapping("email/{email}")
     public Customer showCostumerByEmail(@PathVariable("email") String email){
         if(customerRepository.getCustomerByEmail(email).isPresent()){
             return customerRepository.getCustomerByEmail(email).get();
